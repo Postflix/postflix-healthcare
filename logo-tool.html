@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Postflix Logo Tool - Add Your Logo to Images</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0a2e0a 0%, #1a1a1a 100%);
+    color: #e0e0e0;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    color: #22c55e;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+}
+
+.subtitle {
+    text-align: center;
+    color: #a0a0a0;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.main-grid {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.controls-panel {
+    background: rgba(30, 30, 30, 0.8);
+    border: 2px solid #22c55e;
+    border-radius: 16px;
+    padding: 25px;
+    backdrop-filter: blur(10px);
+}
+
+.control-group {
+    margin-bottom: 25px;
+}
+
+.control-group label {
+    display: block;
+    color: #22c55e;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+.upload-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+}
+
+.upload-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(34, 197, 94, 0.4);
+}
+
+.upload-btn.secondary {
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+.upload-btn.secondary:hover {
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+}
+
+.file-info {
+    margin-top: 8px;
+    padding: 8px;
+    background: rgba(34, 197, 94, 0.1);
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: #22c55e;
+    text-align: center;
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+input[type="range"] {
+    flex: 1;
+    height: 6px;
+    background: #333;
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: #22c55e;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: #22c55e;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+.value-display {
+    min-width: 70px;
+    text-align: center;
+    color: #22c55e;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.position-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.position-btn {
+    padding: 12px;
+    background: rgba(50, 50, 50, 0.6);
+    border: 2px solid #444;
+    border-radius: 8px;
+    color: #e0e0e0;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+}
+
+.position-btn:hover {
+    border-color: #22c55e;
+    background: rgba(34, 197, 94, 0.1);
+}
+
+.position-btn.active {
+    background: rgba(34, 197, 94, 0.2);
+    border-color: #22c55e;
+    color: #22c55e;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #22c55e;
+}
+
+.checkbox-item label {
+    margin: 0;
+    cursor: pointer;
+    color: #e0e0e0;
+    font-weight: normal;
+}
+
+.preview-container {
+    background: rgba(30, 30, 30, 0.8);
+    border: 2px solid #22c55e;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(10px);
+}
+
+.preview-area {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1a1a1a;
+    border-radius: 10px;
+    min-height: 500px;
+    max-height: 700px;
+    position: relative;
+    overflow: auto;
+}
+
+.preview-canvas {
+    max-width: 100%;
+    max-height: 650px;
+    width: auto;
+    height: auto;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+.preview-placeholder {
+    text-align: center;
+    color: #666;
+    font-size: 1.2rem;
+}
+
+.preview-placeholder .icon {
+    font-size: 4rem;
+    margin-bottom: 15px;
+}
+
+.download-section {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.download-btn {
+    padding: 18px 50px;
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 700;
+    transition: all 0.3s;
+    box-shadow: 0 4px 20px rgba(220, 38, 38, 0.4);
+    display: inline-block;
+}
+
+.download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(220, 38, 38, 0.5);
+}
+
+.download-btn:disabled {
+    background: #555;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+.message {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+.message.success {
+    background: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+    border: 1px solid #22c55e;
+}
+
+.message.error {
+    background: rgba(220, 38, 38, 0.2);
+    color: #dc2626;
+    border: 1px solid #dc2626;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 1024px) {
+    .main-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🎨 Postflix Logo Tool</h1>
+    <p class="subtitle">Add your professional logo to your Healthcare Holiday Cards</p>
+
+    <div class="main-grid">
+        <!-- CONTROLS PANEL -->
+        <div class="controls-panel">
+            <div class="control-group">
+                <label>📷 1. Upload Your Image</label>
+                <input type="file" id="imageInput" accept="image/*" style="display:none;">
+                <button class="upload-btn" onclick="document.getElementById('imageInput').click()">
+                    Choose Image
+                </button>
+                <div id="imageInfo" class="file-info" style="display:none;"></div>
+            </div>
+
+            <div class="control-group">
+                <label>🏢 2. Upload Your Logo</label>
+                <input type="file" id="logoInput" accept="image/png,image/jpeg,image/jpg" style="display:none;">
+                <button class="upload-btn secondary" onclick="document.getElementById('logoInput').click()">
+                    Choose Logo
+                </button>
+                <div id="logoInfo" class="file-info" style="display:none;"></div>
+            </div>
+
+            <div class="control-group">
+                <label>📍 3. Logo Position</label>
+                <div class="position-grid">
+                    <button class="position-btn" data-pos="top-left">↖️ Top Left</button>
+                    <button class="position-btn" data-pos="top-center">⬆️ Top Center</button>
+                    <button class="position-btn" data-pos="top-right">↗️ Top Right</button>
+                    <button class="position-btn" data-pos="middle-left">⬅️ Middle Left</button>
+                    <button class="position-btn" data-pos="center">⏺️ Center</button>
+                    <button class="position-btn" data-pos="middle-right">➡️ Middle Right</button>
+                    <button class="position-btn" data-pos="bottom-left">↙️ Bottom Left</button>
+                    <button class="position-btn" data-pos="bottom-center">⬇️ Bottom Center</button>
+                    <button class="position-btn active" data-pos="bottom-right">↘️ Bottom Right</button>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>📏 4. Logo Size</label>
+                <div class="slider-container">
+                    <input type="range" id="sizeSlider" min="50" max="300" value="120">
+                    <span class="value-display" id="sizeValue">120px</span>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>💧 5. Logo Opacity</label>
+                <div class="slider-container">
+                    <input type="range" id="opacitySlider" min="10" max="100" value="100">
+                    <span class="value-display" id="opacityValue">100%</span>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>✨ 6. Effects (Optional)</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="shadowCheck">
+                        <label for="shadowCheck">Add Shadow</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="borderCheck">
+                        <label for="borderCheck">Add White Border</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PREVIEW PANEL -->
+        <div class="preview-container">
+            <div class="preview-area">
+                <canvas id="previewCanvas" class="preview-canvas"></canvas>
+                <div id="placeholder" class="preview-placeholder">
+                    <div class="icon">🖼️</div>
+                    <div>Upload an image and logo to see preview</div>
+                </div>
+            </div>
+            
+            <div class="download-section">
+                <button id="downloadBtn" class="download-btn" disabled>
+                    🎁 Download Image with Logo
+                </button>
+                <div id="message"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        Made with ❤️ by Postflix.ai | Healthcare Holiday Cards
+    </div>
+</div>
+
+<script>
+// ============================================
+// EXPIRATION CHECK
+// ============================================
+(function() {
+    const expirationDate = new Date('2026-01-31T23:59:59');
+    const currentDate = new Date();
+    
+    if (currentDate > expirationDate) {
+        document.body.innerHTML = `
+            <div style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                background: linear-gradient(135deg, #0a2e0a 0%, #1a1a1a 100%);
+                color: #e0e0e0;
+                font-family: 'Inter', sans-serif;
+                text-align: center;
+                padding: 2rem;
+            ">
+                <div style="
+                    background: rgba(30, 30, 30, 0.9);
+                    border: 3px solid #ef4444;
+                    border-radius: 20px;
+                    padding: 3rem;
+                    max-width: 600px;
+                    box-shadow: 0 0 50px rgba(239, 68, 68, 0.5);
+                ">
+                    <div style="font-size: 5rem; margin-bottom: 1rem;">⏰</div>
+                    <h1 style="color: #ef4444; font-size: 2rem; margin-bottom: 1rem;">Access Expired</h1>
+                    <p style="color: #e0e0e0; font-size: 1.1rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                        This tool was valid until <strong>January 31, 2026</strong>.<br>
+                        The access period has ended.
+                    </p>
+                    <p style="color: #a0a0a0; font-size: 0.9rem;">
+                        Thank you for using Postflix Healthcare Holiday Cards!
+                    </p>
+                </div>
+            </div>
+        `;
+        throw new Error('Tool expired');
+    }
+})();
+
+// Global state
+let state = {
+    baseImage: null,
+    logoImage: null,
+    position: 'bottom-right',
+    size: 120,
+    opacity: 100,
+    shadow: false,
+    border: false
+};
+
+const canvas = document.getElementById('previewCanvas');
+const ctx = canvas.getContext('2d');
+const placeholder = document.getElementById('placeholder');
+
+// Image upload
+document.getElementById('imageInput').addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+        showMessage('⚠️ Please select a valid image file!', 'error');
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+        const img = new Image();
+        img.onload = () => {
+            state.baseImage = img;
+            document.getElementById('imageInfo').style.display = 'block';
+            document.getElementById('imageInfo').textContent = `✅ ${file.name}`;
+            updatePreview();
+        };
+        img.src = event.target.result;
+    };
+    reader.readAsDataURL(file);
+});
+
+// Logo upload
+document.getElementById('logoInput').addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    if (!file.type.match('image/(png|jpeg|jpg)')) {
+        showMessage('⚠️ Please select a PNG or JPG logo!', 'error');
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+        const img = new Image();
+        img.onload = () => {
+            state.logoImage = img;
+            document.getElementById('logoInfo').style.display = 'block';
+            document.getElementById('logoInfo').textContent = `✅ ${file.name}`;
+            updatePreview();
+        };
+        img.src = event.target.result;
+    };
+    reader.readAsDataURL(file);
+});
+
+// Position buttons
+document.querySelectorAll('.position-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.position-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        state.position = btn.dataset.pos;
+        updatePreview();
+    });
+});
+
+// Size slider
+document.getElementById('sizeSlider').addEventListener('input', (e) => {
+    state.size = parseInt(e.target.value);
+    document.getElementById('sizeValue').textContent = state.size + 'px';
+    updatePreview();
+});
+
+// Opacity slider
+document.getElementById('opacitySlider').addEventListener('input', (e) => {
+    state.opacity = parseInt(e.target.value);
+    document.getElementById('opacityValue').textContent = state.opacity + '%';
+    updatePreview();
+});
+
+// Effects checkboxes
+document.getElementById('shadowCheck').addEventListener('change', (e) => {
+    state.shadow = e.target.checked;
+    updatePreview();
+});
+
+document.getElementById('borderCheck').addEventListener('change', (e) => {
+    state.border = e.target.checked;
+    updatePreview();
+});
+
+// Update preview
+function updatePreview() {
+    if (!state.baseImage) {
+        placeholder.style.display = 'block';
+        canvas.style.display = 'none';
+        document.getElementById('downloadBtn').disabled = true;
+        return;
+    }
+
+    placeholder.style.display = 'none';
+    canvas.style.display = 'block';
+
+    // Set canvas size to match image
+    canvas.width = state.baseImage.width;
+    canvas.height = state.baseImage.height;
+
+    // Clear canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw base image
+    ctx.drawImage(state.baseImage, 0, 0);
+
+    // Draw logo if present
+    if (state.logoImage) {
+        const logoWidth = state.size;
+        const logoHeight = (state.logoImage.height / state.logoImage.width) * logoWidth;
+        const padding = 20;
+
+        // Calculate position
+        let x, y;
+        switch (state.position) {
+            case 'top-left':
+                x = padding;
+                y = padding;
+                break;
+            case 'top-center':
+                x = (canvas.width - logoWidth) / 2;
+                y = padding;
+                break;
+            case 'top-right':
+                x = canvas.width - logoWidth - padding;
+                y = padding;
+                break;
+            case 'middle-left':
+                x = padding;
+                y = (canvas.height - logoHeight) / 2;
+                break;
+            case 'center':
+                x = (canvas.width - logoWidth) / 2;
+                y = (canvas.height - logoHeight) / 2;
+                break;
+            case 'middle-right':
+                x = canvas.width - logoWidth - padding;
+                y = (canvas.height - logoHeight) / 2;
+                break;
+            case 'bottom-left':
+                x = padding;
+                y = canvas.height - logoHeight - padding;
+                break;
+            case 'bottom-center':
+                x = (canvas.width - logoWidth) / 2;
+                y = canvas.height - logoHeight - padding;
+                break;
+            case 'bottom-right':
+            default:
+                x = canvas.width - logoWidth - padding;
+                y = canvas.height - logoHeight - padding;
+        }
+
+        // Apply effects
+        ctx.save();
+        ctx.globalAlpha = state.opacity / 100;
+
+        if (state.shadow) {
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+            ctx.shadowBlur = 15;
+            ctx.shadowOffsetX = 5;
+            ctx.shadowOffsetY = 5;
+        }
+
+        if (state.border) {
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = 4;
+            ctx.strokeRect(x - 2, y - 2, logoWidth + 4, logoHeight + 4);
+        }
+
+        // Draw logo
+        ctx.drawImage(state.logoImage, x, y, logoWidth, logoHeight);
+        ctx.restore();
+
+        document.getElementById('downloadBtn').disabled = false;
+    } else {
+        document.getElementById('downloadBtn').disabled = true;
+    }
+}
+
+// Download
+document.getElementById('downloadBtn').addEventListener('click', () => {
+    if (!state.baseImage || !state.logoImage) {
+        showMessage('⚠️ Please upload both image and logo first!', 'error');
+        return;
+    }
+
+    const link = document.createElement('a');
+    link.download = 'postflix-with-logo-' + Date.now() + '.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+
+    showMessage('✅ Image downloaded successfully!', 'success');
+});
+
+// Show message
+function showMessage(text, type) {
+    const msgEl = document.getElementById('message');
+    msgEl.textContent = text;
+    msgEl.className = 'message ' + type;
+    msgEl.style.display = 'block';
+    
+    setTimeout(() => {
+        msgEl.style.display = 'none';
+    }, 3000);
+}
+</script>
+
+</body>
+</html>

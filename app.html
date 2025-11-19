@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Postflix.ai - Christmas Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Courier+New&family=Georgia&family=Inter:wght@400;600;700;800&family=Lato:wght@400;700&family=Montserrat:wght@400;700&family=Oswald:wght@400;700&family=Pacifico&family=Playfair+Display:wght@400;700&family=Poppins:wght@400;600;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+* {
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #0a2e0a 0%, #1a0f0f 50%, #0a2e0a 100%);
+    color: #e0e0e0;
+    margin: 0;
+    padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '❄️';
+    position: fixed;
+    top: -50px;
+    left: 10%;
+    font-size: 2rem;
+    opacity: 0.3;
+    animation: snowfall 15s linear infinite;
+}
+
+body::after {
+    content: '⭐';
+    position: fixed;
+    top: -50px;
+    right: 15%;
+    font-size: 1.5rem;
+    opacity: 0.4;
+    animation: snowfall 20s linear infinite;
+    animation-delay: 5s;
+}
+
+@keyframes snowfall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin: 0 0 30px 0;
+    color: #ffffff;
+    text-align: center;
+    letter-spacing: 1px;
+    text-shadow: 0 0 20px rgba(220, 38, 38, 0.6), 0 0 40px rgba(34, 197, 94, 0.4);
+    background: linear-gradient(90deg, #dc2626, #22c55e, #fbbf24, #dc2626);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: christmasGlow 3s ease-in-out infinite;
+}
+
+@keyframes christmasGlow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.main-wrapper {
+    display: flex;
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+    align-items: flex-start;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    background: rgba(26, 26, 26, 0.95);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3), 0 0 50px rgba(34, 197, 94, 0.2);
+    border: 2px solid rgba(220, 38, 38, 0.3);
+}
+
+.preview {
+    position: sticky;
+    top: 20px;
+    flex-shrink: 0;
+    width: 450px;
+    height: 562px;
+    overflow: hidden;
+    border-radius: 16px;
+    background: #1a1a1a;
+    border: 3px solid #dc2626;
+    box-shadow: 0 10px 40px rgba(220, 38, 38, 0.5), 0 0 60px rgba(34, 197, 94, 0.3);
+}
+
+@media (max-width: 1100px) {
+    .main-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .container {
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    .preview {
+        position: relative;
+        width: 100%;
+        max-width: 450px;
+    }
+}
+
+.control-group {
+    padding: 15px;
+    border: 1px solid rgba(220, 38, 38, 0.3);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: rgba(34, 197, 94, 0.05);
+}
+
+label {
+    font-weight: 600;
+    color: #22c55e;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.95rem;
+    text-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
+}
+
+input[type="text"], input[type="file"], input[type="password"], select, textarea {
+    background: #282828;
+    border: 1px solid #3a3a3a;
+    color: #fff;
+    padding: 12px;
+    border-radius: 8px;
+    width: 100%;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    box-sizing: border-box;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, select:focus, textarea:focus {
+    border-color: #dc2626;
+    outline: none;
+    box-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
+}
+
+input[type="file"] {
+    cursor: pointer;
+    background: #222;
+}
+
+select option {
+    background-color: #282828;
+    color: #fff;
+}
+
+button {
+    background: linear-gradient(135deg, #dc2626, #991b1b);
+    color: #ffffff;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: 0.25s ease-in-out;
+    box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+    margin-top: 10px;
+}
+
+button:hover:not(:disabled) {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(220, 38, 38, 0.6);
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #ffffff;
+    animation: spin 0.8s linear infinite;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.text-overlay {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 28px;
+    font-weight: 400;
+    cursor: grab;
+    user-select: none;
+    text-align: center;
+    line-height: 1.4;
+    padding: 10px 15px;
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    text-shadow: 0 0 15px rgba(220, 38, 38, 0.8), 0 0 20px rgba(34, 197, 94, 0.5);
+    transition: font-size 0.2s, font-family 0.2s, font-weight 0.2s, font-style 0.2s;
+    max-width: 90%;
+}
+
+.text-overlay.dragging {
+    cursor: grabbing;
+}
+
+.color-palette {
+    display: grid;
+    grid-template-columns: repeat(8, 30px);
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.color-swatch {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 3px solid #333;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.color-swatch.active { 
+    border-color: #22c55e;
+    transform: scale(1.15);
+    box-shadow: 0 0 15px rgba(34, 197, 94, 0.6);
+}
+
+.color-swatch:hover {
+    transform: scale(1.1);
+    border-color: #22c55e;
+}
+
+.style-checks {
+    display: flex;
+    gap: 20px;
+    margin-top: 5px;
+    color: #e0e0e0;
+}
+
+.style-checks label {
+    font-weight: 400;
+    color: #e0e0e0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.style-checks input[type="checkbox"] {
+    width: auto;
+    cursor: pointer;
+}
+
+.language-selector {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.lang-btn {
+    font-size: 1.5rem;
+    padding: 8px 12px;
+    background: #282828;
+    border: 2px solid #3a3a3a;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    filter: grayscale(80%);
+    opacity: 0.6;
+}
+
+.lang-btn:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.lang-btn.active {
+    filter: grayscale(0%);
+    opacity: 1;
+    border-color: #22c55e;
+    background: #1a3a1a;
+    box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
+}
+
+.filtered-phrases-output {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid rgba(220, 38, 38, 0.3);
+    border-radius: 8px;
+    padding: 5px;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.phrase-item {
+    padding: 8px 10px;
+    margin-bottom: 5px;
+    background: rgba(34, 197, 94, 0.1);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    line-height: 1.3;
+    transition: background 0.2s, transform 0.1s;
+    border-left: 4px solid #dc2626;
+}
+
+.phrase-item:hover {
+    background: rgba(34, 197, 94, 0.2);
+    transform: translateX(3px);
+    border-left-color: #22c55e;
+}
+
+.message {
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    text-align: center;
+    animation: fadeIn 0.3s ease-in;
+}
+
+.message.error {
+    background: rgba(220, 38, 38, 0.2);
+    border: 1px solid #dc2626;
+    color: #ff6b6b;
+}
+
+.message.success {
+    background: rgba(34, 197, 94, 0.2);
+    border: 1px solid #22c55e;
+    color: #22c55e;
+}
+
+.message.warning {
+    background: rgba(251, 191, 36, 0.2);
+    border: 1px solid #fbbf24;
+    color: #fbbf24;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.download-btn {
+    margin-top: 25px;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+.download-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #4ade80, #22c55e);
+}
+
+.christmas-note {
+    text-align: center;
+    color: #22c55e;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    font-style: italic;
+    opacity: 0.8;
+}
+
+/* PROTECTION MODAL STYLES */
+#protectionModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.98);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    backdrop-filter: blur(10px);
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #1a1a1a, #0a2e0a);
+    padding: 40px;
+    border-radius: 16px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    border: 2px solid #dc2626;
+    box-shadow: 0 0 50px rgba(220, 38, 38, 0.5), 0 0 100px rgba(34, 197, 94, 0.3);
+}
+
+.modal-content h2 {
+    color: #22c55e;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+}
+
+.modal-content input {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.modal-content button {
+    width: 100%;
+}
+
+#errorBlock {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+}
+
+#errorBlock div {
+    text-align: center;
+    color: #dc2626;
+    font-size: 1.5rem;
+    padding: 40px;
+    max-width: 600px;
+}
+
+.app-content {
+    display: none;
+}
+</style>
+</head>
+<body>
+
+<!-- PROTECTION MODAL -->
+<div id="protectionModal">
+  <div class="modal-content">
+    <h2>🔐 Access Required</h2>
+    <p style="color: #e0e0e0; margin-bottom: 20px;">Enter your access password</p>
+    <input type="password" id="passwordInput" placeholder="Password" autocomplete="off" />
+    <div id="passwordError" class="message error" style="display: none;"></div>
+    <button id="submitPassword">🎄 Access</button>
+  </div>
+</div>
+
+<!-- ERROR BLOCK -->
+<div id="errorBlock">
+  <div id="errorMessage"></div>
+</div>
+
+<!-- MAIN APP -->
+<div class="app-content">
+
+<h1>🎄 Postflix.ai - Healthcare Holiday Cards 🎄</h1>
+
+<div class="main-wrapper">
+  <div class="container">
+  
+    <div class="control-group">
+      <label for="backgroundInput">Background Image:</label>
+      <input type="file" id="backgroundInput" accept="image/*" style="display:none;">
+      <button type="button" id="customFileBtn" style="width:100%; background:#282828; color:#fff; border:1px solid #3a3a3a; cursor:pointer; font-weight:400; margin-top:0;">Choose File</button>
+      <span id="fileName" style="display:block; margin-top:8px; font-size:0.85rem; color:#888;">No file chosen</span>
+      <div id="imageMessage"></div>
+    </div>
+
+    <div class="control-group">
+      <label for="textInput">Post Text:</label>
+      <input type="text" id="textInput" placeholder="Type your post text" maxlength="200">
+
+      <label style="margin-top:15px;">Text Color:</label>
+      <div class="color-palette" id="colorPalette"></div>
+      
+      <label style="margin-top:15px;">Font:</label>
+      <select id="fontSelect">
+          <option value="'Courier New', monospace">Courier New</option>
+          <option value="'Georgia', serif">Georgia</option>
+          <option value="'Inter', sans-serif">Inter</option>
+          <option value="'Lato', sans-serif">Lato</option>
+          <option value="'Montserrat', sans-serif">Montserrat</option>
+          <option value="'Oswald', sans-serif">Oswald</option>
+          <option value="'Pacifico', cursive">Pacifico</option>
+          <option value="'Playfair Display', serif">Playfair Display</option>
+          <option value="'Poppins', sans-serif">Poppins</option>
+          <option value="'Roboto', sans-serif">Roboto</option>
+      </select>
+
+      <label style="margin-top:15px;">Style:</label>
+      <div class="style-checks">
+        <label><input type="checkbox" id="boldCheck"> Bold</label>
+        <label><input type="checkbox" id="italicCheck"> Italic</label>
+      </div>
+      
+      <label style="margin-top:15px;">Font Size:</label>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <input type="range" id="fontSizeSlider" min="16" max="60" value="28" style="flex:1; cursor:pointer;">
+        <span id="fontSizeValue" style="color:#22c55e; font-weight:600; min-width:45px;">28px</span>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <label>🎅 Christmas Phrase Suggestions:</label>
+      <p class="christmas-note">Click on a language to see 40 festive phrases!</p>
+      
+      <div class="language-selector">
+        <button class="lang-btn active" data-lang="en" title="English">🇺🇸</button>
+        <button class="lang-btn" data-lang="es" title="Español">🇪🇸</button>
+        <button class="lang-btn" data-lang="pt" title="Português">🇵🇹</button>
+        <button class="lang-btn" data-lang="fr" title="Français">🇫🇷</button>
+        <button class="lang-btn" data-lang="it" title="Italiano">🇮🇹</button>
+        <button class="lang-btn" data-lang="de" title="Deutsch">🇩🇪</button>
+      </div>
+      
+      <div id="filteredPhrasesOutput" class="filtered-phrases-output"></div>
+    </div>
+
+    <button id="downloadBtn" class="download-btn">🎁 Download Image</button>
+    <div id="downloadMessage"></div>
+  </div>
+
+  <div class="preview" id="previewArea">
+    <img id="previewImage" src="" alt="Preview">
+    <div class="text-overlay" id="previewText"></div>
+  </div>
+</div>
+
+</div>
+
+<script>
+// ============================================
+// COPYRIGHT PROTECTION SYSTEM
+// ============================================
+(function() {
+    'use strict';
+    
+    // COPYRIGHT WARNINGS
+    console.log('%c⚠️ COPYRIGHT PROTECTED - UNAUTHORIZED ACCESS WILL BE PROSECUTED', 'color: #dc2626; font-size: 20px; font-weight: bold; text-shadow: 0 0 10px #dc2626;');
+    console.log('%c⚠️ THIS CODE IS PROTECTED BY INTELLECTUAL PROPERTY LAW', 'color: #dc2626; font-size: 16px; font-weight: bold;');
+    console.log('%c⚠️ ANY ATTEMPT TO COPY, MODIFY OR DISTRIBUTE WILL BE LEGALLY PURSUED', 'color: #dc2626; font-size: 16px; font-weight: bold;');
+    
+    // PROTECTION CONFIG (OBFUSCATED)
+    const _0xconfig = {
+        d: atob('cG9zdGZsaXguZ2l0aHViLmlv'),
+        p: atob('SEhDMjAyNg=='),
+        e: new Date('2026-01-31T23:59:59')
+    };
+    
+    // DOMAIN CHECK
+    function checkDomain() {
+        const h = window.location.hostname;
+        if (h !== _0xconfig.d && h !== 'localhost' && h !== '127.0.0.1' && h !== '') {
+            showError('🚫 Unauthorized access from this domain.');
+            return false;
+        }
+        return true;
+    }
+    
+    // EXPIRATION CHECK
+    function checkExpiration() {
+        const now = new Date();
+        if (now > _0xconfig.e) {
+            showError('⏰ This access expired on January 31, 2026.<br>Contact us to renew.');
+            return false;
+        }
+        return true;
+    }
+    
+    // PASSWORD CHECK
+    function checkPassword(input) {
+        return input === _0xconfig.p;
+    }
+    
+    // SHOW ERROR BLOCK
+    function showError(msg) {
+        const block = document.getElementById('errorBlock');
+        const msgEl = document.getElementById('errorMessage');
+        msgEl.innerHTML = msg;
+        block.style.display = 'flex';
+        document.getElementById('protectionModal').style.display = 'none';
+    }
+    
+    // UNLOCK APP
+    function unlockApp() {
+        document.getElementById('protectionModal').style.display = 'none';
+        document.querySelector('.app-content').style.display = 'block';
+    }
+    
+    // DEVTOOLS DETECTION
+    let devtoolsOpen = false;
+    const threshold = 160;
+    
+    function detectDevTools() {
+        if (window.outerWidth - window.innerWidth > threshold || 
+            window.outerHeight - window.innerHeight > threshold) {
+            if (!devtoolsOpen) {
+                devtoolsOpen = true;
+                console.log('%c⚠️ COPYRIGHT PROTECTED - UNAUTHORIZED ACCESS WILL BE PROSECUTED', 'color: #dc2626; font-size: 24px; font-weight: bold;');
+                setTimeout(() => {
+                    window.close();
+                    window.location.href = 'about:blank';
+                }, 100);
+            }
+        }
+    }
+    
+    setInterval(detectDevTools, 1000);
+    
+    // KEYBOARD SHORTCUTS BLOCKER
+    document.addEventListener('keydown', function(e) {
+        // F12
+        if (e.keyCode === 123) {
+            e.preventDefault();
+            console.log('%c⚠️ COPYRIGHT PROTECTED', 'color: #dc2626; font-size: 20px; font-weight: bold;');
+            return false;
+        }
+        // Ctrl+Shift+I
+        if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
+            e.preventDefault();
+            return false;
+        }
+        // Ctrl+Shift+J
+        if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
+            e.preventDefault();
+            return false;
+        }
+        // Ctrl+U
+        if (e.ctrlKey && e.keyCode === 85) {
+            e.preventDefault();
+            return false;
+        }
+        // Ctrl+S
+        if (e.ctrlKey && e.keyCode === 83) {
+            e.preventDefault();
+            return false;
+        }
+    });
+    
+    // RIGHT CLICK BLOCKER
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        return false;
+    });
+    
+    // COPY/CUT BLOCKER (except inputs)
+    document.addEventListener('copy', function(e) {
+        if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+            e.preventDefault();
+            return false;
+        }
+    });
+    
+    document.addEventListener('cut', function(e) {
+        if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+            e.preventDefault();
+            return false;
+        }
+    });
+    
+    // DRAG BLOCKER
+    document.addEventListener('dragstart', function(e) {
+        if (e.target.tagName === 'IMG') {
+            e.preventDefault();
+            return false;
+        }
+    });
+    
+    // PASSWORD SUBMIT
+    document.getElementById('submitPassword').addEventListener('click', function() {
+        const input = document.getElementById('passwordInput').value;
+        const errorEl = document.getElementById('passwordError');
+        
+        if (checkPassword(input)) {
+            if (checkDomain() && checkExpiration()) {
+                unlockApp();
+            }
+        } else {
+            errorEl.textContent = '❌ Incorrect password. Please try again.';
+            errorEl.style.display = 'block';
+            document.getElementById('passwordInput').value = '';
+        }
+    });
+    
+    // ENTER KEY SUBMIT
+    document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            document.getElementById('submitPassword').click();
+        }
+    });
+    
+    // INITIAL CHECKS
+    if (!checkDomain() || !checkExpiration()) {
+        return;
+    }
+})();
+
+// ============================================
+// CHRISTMAS PHRASES DATABASE
+// ============================================
+const christmasPhrases = {
+    en: [
+        "May your heart beat strong in 2026, in the perfect rhythm of health and happiness. Merry Christmas!",
+        "Caring for children is believing in miracles every day. May Christmas renew this magic in us!",
+        "Every day, hope is renewed. May this Christmas bring light, strength, and healing to all of us.",
+        "May you have a solid structure to support all your dreams. Merry Christmas!",
+        "This Christmas, may your connections be of love, your synapses of hope, and your thoughts of peace.",
+        "May you see the world with the eyes of the heart this Christmas. Clear vision, full life!",
+        "Taking care of lives is our greatest gift. We wish your entire family much health this Christmas.",
+        "May your mind find peace, your heart comfort, and your soul rest. Merry Christmas!",
+        "Celebrating life is our craft. May this Christmas be filled with love and peace.",
+        "Not everything that heals is visible to the eyes. May Christmas reveal the best in each of us.",
+        "May your skin reflect inner health and your glow be of genuine happiness. Merry Christmas!",
+        "We bring relief, comfort, and peaceful sleep. May your Christmas be of well-deserved rest!",
+        "Merry Christmas and a New Year full of great moments.",
+        "May your whole body be in perfect balance, along with the joy of this Christmas!",
+        "Every step is a conquered victory. May your Christmas be full of steps toward happiness!",
+        "Life runs through our veins. May Christmas circulate love, health, and renewal through your entire being.",
+        "May this Christmas strengthen your immunity and your hope!",
+        "May your Christmas be of crystalline waters and renewed health!",
+        "Breathe deeply: it's Christmas! May every inhale bring peace and every exhale release worries.",
+        "May your joints move lightly and your spirit dance freely this Christmas!",
+        "Serving is our vocation, healing is our mission, loving is our goal. Merry Christmas!",
+        "Taking care of workplace health is an act of dignity. May this Christmas bring you safety and fulfillment!",
+        "You teach us more than you imagine. Thank you for your trust. Merry Christmas!",
+        "We care for you with respect, treat with science, and dedicate our effort to your health. Thank you for trusting us. Happy Holidays!",
+        "Each patient inspires us to be better. Alone we are good, together we are extraordinary. May this Christmas strengthen our unity and gratitude!",
+        "Dignity until the last breath. May Christmas remind us: every moment is precious.",
+        "Where science meets art, healing is born. May your Christmas be a masterpiece of happiness!",
+        "May you hear good news, breathe easily, and sing with joy this Christmas!",
+        "While the world celebrates, we care. Our gift? Lives saved. Merry Christmas!",
+        "More than a uniform, it is a symbol of hope. May Christmas renew our commitment to our patients!",
+        "The love for our patients never ends. May your Christmas bring joy, smiles, and positive moments!",
+        "Every line written is a story of care. May your Christmas write chapters of full health!",
+        "Christmas prescription: 1 dose of love, 2 of hope, 3 of health. Take daily, every day of the coming year!",
+        "May your Christmas be filled with restored lives and love!",
+        "May your temperature always be of health and your heart always warm with love. Merry Christmas!",
+        "We listen to more than heartbeats: we listen to stories and hopes. We wish you a Merry Christmas!",
+        "Within these walls, we build trust and care with attention. May your Christmas be of warmth and love!",
+        "Our hands do not perform miracles, but they are tools of the One who does. Merry Christmas!",
+        "Merry Christmas!",
+        "Merry Christmas and a Happy New Year!"
+    ],
+    es: [
+        "Que tu corazón lata fuerte en 2026, al ritmo perfecto de salud y felicidad. ¡Feliz Navidad!",
+        "Cuidar de los niños es creer en milagros cada día. Que la Navidad renueve esta magia en nosotros.",
+        "Cada día, la esperanza se renueva. Que esta Navidad traiga luz, fuerza y sanación para todos.",
+        "Que tengas una estructura sólida para sostener todos tus sueños. ¡Feliz Navidad!",
+        "Esta Navidad, que tus conexiones sean de amor, tus sinapsis de esperanza y tus pensamientos de paz.",
+        "Que veas el mundo con los ojos del corazón esta Navidad. Visión clara, vida plena.",
+        "Cuidar vidas es nuestro mayor regalo. Deseamos mucha salud para toda tu familia esta Navidad.",
+        "Que tu mente encuentre paz, tu corazón consuelo y tu alma descanso. ¡Feliz Navidad!",
+        "Celebrar la vida es nuestro arte. Que esta Navidad esté llena de amor y paz.",
+        "No todo lo que sana es visible a los ojos. Que la Navidad revele lo mejor de cada uno de nosotros.",
+        "Que tu piel refleje salud interior y tu brillo sea de verdadera felicidad. ¡Feliz Navidad!",
+        "Traemos alivio, confort y sueño tranquilo. Que tu Navidad sea de descanso merecido.",
+        "¡Feliz Navidad y un Año Nuevo lleno de grandes momentos!",
+        "Que todo tu cuerpo esté en perfecto equilibrio, junto con la alegría de esta Navidad.",
+        "Cada paso es una victoria conquistada. Que tu Navidad esté llena de pasos hacia la felicidad.",
+        "La vida corre por nuestras venas. Que la Navidad circule amor, salud y renovación en todo tu ser.",
+        "Que esta Navidad fortalezca tu inmunidad y tu esperanza.",
+        "Que tu Navidad sea de aguas cristalinas y salud renovada.",
+        "Respira profundo: ¡es Navidad! Que cada inhalación traiga paz y cada exhalación libere preocupaciones.",
+        "Que tus articulaciones se muevan con ligereza y tu espíritu baile libre esta Navidad.",
+        "Servir es nuestra vocación, curar nuestra misión, amar nuestro objetivo. ¡Feliz Navidad!",
+        "Cuidar la salud en el trabajo es un acto de dignidad. Que esta Navidad te traiga seguridad y plenitud.",
+        "Nos enseñan más de lo que imaginan. Gracias por su confianza. ¡Feliz Navidad!",
+        "Cuidamos de ti con respeto, tratamos con ciencia y dedicamos nuestro esfuerzo a tu salud. Gracias por confiar en nosotros. ¡Felices fiestas!",
+        "Cada paciente nos inspira a ser mejores. Solos somos buenos, juntos extraordinarios. Que esta Navidad fortalezca nuestra unidad y gratitud.",
+        "Dignidad hasta el último aliento. Que la Navidad nos recuerde: cada momento es precioso.",
+        "Donde la ciencia encuentra el arte, nace la cura. Que tu Navidad sea una obra maestra de felicidad.",
+        "Que escuches buenas noticias, respires aliviado y cantes de alegría esta Navidad.",
+        "Mientras el mundo celebra, cuidamos. ¿Nuestro regalo? Vidas salvadas. ¡Feliz Navidad!",
+        "Más que un uniforme, es un símbolo de esperanza. Que la Navidad renueve nuestro compromiso con nuestros pacientes.",
+        "El amor por nuestros pacientes nunca termina. Que tu Navidad traiga alegría, sonrisas y momentos positivos.",
+        "Cada línea escrita es una historia de cuidado. Que tu Navidad escriba capítulos de salud plena.",
+        "Prescripción de Navidad: 1 dosis de amor, 2 de esperanza, 3 de salud. Tomar diariamente, todos los días del próximo año.",
+        "Que tu Navidad esté llena de vidas restauradas y amor.",
+        "Que tu temperatura sea siempre de salud y tu corazón siempre cálido de amor. ¡Feliz Navidad!",
+        "Escuchamos más que latidos: escuchamos historias y esperanzas. ¡Te deseamos una Feliz Navidad!",
+        "Dentro de estas paredes, construimos confianza y cuidamos con atención. Que tu Navidad sea de acogimiento y amor.",
+        "Nuestras manos no realizan milagros, pero son herramientas de Quien los realiza. ¡Feliz Navidad!",
+        "Feliz Navidad!",
+        "Feliz Navidad y próspero Año Nuevo!"
+    ],
+    pt: [
+        "Que seu coração bata forte em 2026, no ritmo perfeito de saúde e felicidade. Feliz Natal!",
+        "Cuidar das crianças é acreditar em milagres todos os dias. Que o Natal renove essa magia em nós!",
+        "Todos os dias, a esperança se renova. Que este Natal traga luz, força e cura para todos nós.",
+        "Que você tenha uma estrutura sólida para sustentar todos os seus sonhos. Feliz Natal!",
+        "Neste Natal, que suas conexões sejam de amor, suas sinapses de esperança e seus pensamentos de paz.",
+        "Que você veja o mundo com os olhos do coração neste Natal. Visão clara, vida plena!",
+        "Cuidar de vidas é o nosso maior presente. Desejamos muita saúde para toda a sua família neste Natal.",
+        "Que sua mente encontre paz, seu coração conforto e sua alma descanso. Feliz Natal!",
+        "Celebrar a vida é nossa arte. Que este Natal seja repleto de amor e paz.",
+        "Nem tudo o que cura é visível aos olhos. Que o Natal revele o melhor em cada um de nós.",
+        "Que sua pele reflita saúde interior e seu brilho seja de verdadeira felicidade. Feliz Natal!",
+        "Trazemos alívio, conforto e sono tranquilo. Que seu Natal seja de merecido descanso!",
+        "Feliz Natal e um ano novo repleto de grandes momentos.",
+        "Que todo o seu corpo esteja em perfeito equilíbrio, junto com a alegria deste Natal!",
+        "Cada passo é uma vitória conquistada. Que seu Natal seja cheio de passos rumo à felicidade!",
+        "A vida corre em nossas veias. Que o Natal circule amor, saúde e renovação em todo o seu ser.",
+        "Que este Natal fortaleça sua imunidade e sua esperança!",
+        "Que seu Natal seja de águas cristalinas e saúde renovada!",
+        "Respire fundo: é Natal! Que cada inspiração traga paz e cada expiração libere preocupações.",
+        "Que suas articulações se movam com leveza e seu espírito dance livre neste Natal!",
+        "Servir é nossa vocação, curar é nossa missão, amar é nosso objetivo. Feliz Natal!",
+        "Cuidar da saúde no trabalho é um ato de dignidade. Que este Natal lhe traga segurança e plenitude!",
+        "Vocês nos ensinam mais do que imaginam. Obrigado pela confiança. Feliz Natal!",
+        "Cuidamos de você com respeito, tratamos com ciência e dedicamos nosso esforço à sua saúde. Obrigado por confiar em nós. Boas festas!",
+        "Cada paciente nos inspira a ser melhores. Sozinhos somos bons, juntos somos extraordinários. Que este Natal fortaleça nossa união e gratidão!",
+        "Dignidade até o último suspiro. Que o Natal nos lembre: cada momento é precioso.",
+        "Onde a ciência encontra a arte, nasce a cura. Que seu Natal seja uma obra-prima de felicidade!",
+        "Que você ouça boas notícias, respire aliviado e cante de alegria neste Natal!",
+        "Enquanto o mundo celebra, nós cuidamos. Nosso presente? Vidas salvas. Feliz Natal!",
+        "Mais que um jaleco, é um símbolo de esperança. Que o Natal renove nosso compromisso com nossos pacientes!",
+        "O amor pelos nossos pacientes nunca termina. Que seu Natal traga alegria, sorrisos e momentos positivos!",
+        "Cada linha escrita é uma história de cuidado. Que seu Natal escreva capítulos de saúde plena!",
+        "Prescrição de Natal: 1 dose de amor, 2 de esperança, 3 de saúde. Tomar diariamente, todos os dias do próximo ano!",
+        "Que seu Natal esteja repleto de vidas restauradas e amor!",
+        "Que sua temperatura seja sempre de saúde e seu coração sempre aquecido de amor. Feliz Natal!",
+        "Ouvimos mais do que batimentos: ouvimos histórias e esperanças. Desejamos a você um Feliz Natal!",
+        "Entre estas paredes, construímos confiança e cuidamos com atenção. Que seu Natal seja de acolhimento e amor!",
+        "Nossas mãos não realizam milagres, mas são ferramentas Daquele que os realiza. Feliz Natal!",
+        "Feliz Natal!",
+        "Feliz Natal e ótimo ano novo!"
+    ],
+    it: [
+        "Che il tuo cuore batta forte nel 2026, nel ritmo perfetto di salute e felicità. Buon Natale!",
+        "Prendersi cura dei bambini significa credere nei miracoli ogni giorno. Che il Natale rinnovi questa magia in noi!",
+        "Ogni giorno, la speranza si rinnova. Che questo Natale porti luce, forza e guarigione a tutti noi.",
+        "Che tu abbia una struttura solida per sostenere tutti i tuoi sogni. Buon Natale!",
+        "Questo Natale, che le tue connessioni siano di amore, le tue sinapsi di speranza e i tuoi pensieri di pace.",
+        "Che tu possa vedere il mondo con gli occhi del cuore questo Natale. Visione chiara, vita piena!",
+        "Prendersi cura delle vite è il nostro dono più grande. Auguriamo tanta salute a tutta la tua famiglia questo Natale.",
+        "Che la tua mente trovi pace, il tuo cuore conforto e la tua anima riposo. Buon Natale!",
+        "Celebrare la vita è la nostra arte. Che questo Natale sia pieno di amore e pace!",
+        "Non tutto ciò che guarisce è visibile agli occhi. Che il Natale riveli il meglio di ciascuno di noi!",
+        "Che la tua pelle rifletta la salute interiore e il tuo splendore sia di vera felicità. Buon Natale!",
+        "Portiamo sollievo, conforto e sonno tranquillo. Che il tuo Natale sia di meritato riposo!",
+        "Buon Natale e un nuovo anno pieno di grandi momenti!",
+        "Che tutto il tuo corpo sia in perfetto equilibrio, insieme alla gioia di questo Natale!",
+        "Ogni passo è una vittoria conquistata. Che il tuo Natale sia pieno di passi verso la felicità!",
+        "La vita scorre nelle nostre vene. Che il Natale faccia circolare amore, salute e rinnovamento in tutto il tuo essere.",
+        "Che questo Natale rafforzi la tua immunità e la tua speranza!",
+        "Che il tuo Natale sia di acque cristalline e salute rinnovata!",
+        "Respira a fondo: è Natale! Che ogni inspirazione porti pace e ogni espirazione liberi preoccupazioni.",
+        "Che le tue articolazioni si muovano con leggerezza e il tuo spirito danzi libero questo Natale!",
+        "Servire è la nostra vocazione, guarire è la nostra missione, amare è il nostro obiettivo. Buon Natale!",
+        "Prendersi cura della salute sul lavoro è un atto di dignità. Che questo Natale ti porti sicurezza e pienezza!",
+        "Ci insegnate più di quanto possiate immaginare. Grazie per la vostra fiducia. Buon Natale!",
+        "Ci prendiamo cura di voi con rispetto, trattiamo con scienza e dedichiamo il nostro impegno alla vostra salute. Grazie per averci scelto. Buone feste!",
+        "Ogni paziente ci ispira a essere migliori. Da soli siamo bravi, insieme siamo straordinari. Che questo Natale rafforzi la nostra unità e gratitudine!",
+        "Dignità fino all'ultimo respiro. Che il Natale ci ricordi: ogni momento è prezioso.",
+        "Dove la scienza incontra l'arte nasce la guarigione. Che il tuo Natale sia un capolavoro di felicità!",
+        "Che tu possa ricevere buone notizie, respirare sollevato e cantare di gioia questo Natale!",
+        "Mentre il mondo celebra, noi ci prendiamo cura. Il nostro regalo? Vite salvate. Buon Natale!",
+        "Più di un camice, è un simbolo di speranza. Che il Natale rinnovi il nostro impegno verso i nostri pazienti!",
+        "L'amore per i nostri pazienti non finisce mai. Che il tuo Natale porti gioia, sorrisi e momenti positivi!",
+        "Ogni riga scritta è una storia di cura. Che il tuo Natale scriva capitoli di piena salute!",
+        "Prescrizione di Natale: 1 dose di amore, 2 di speranza, 3 di salute. Da prendere quotidianamente, ogni giorno del prossimo anno!",
+        "Che il tuo Natale sia pieno di vite restaurate e amore!",
+        "Che la tua temperatura sia sempre di salute e il tuo cuore sempre caldo di amore. Buon Natale!",
+        "Ascoltiamo più dei battiti: ascoltiamo storie e speranze. Ti auguriamo un Buon Natale!",
+        "Tra queste pareti costruiamo fiducia e curiamo con attenzione. Che il tuo Natale sia di accoglienza e amore!",
+        "Le nostre mani non compiono miracoli, ma sono strumenti di Colui che li compie. Buon Natale!",
+        "Buon Natale!",
+        "Buon Natale e felice anno nuovo!"
+    ],
+    fr: [
+        "Que votre cœur batte fort en 2026, dans le rythme parfait de santé et de bonheur. Joyeux Noël !",
+        "Prendre soin des enfants, c'est croire aux miracles chaque jour. Que Noël renouvelle cette magie en nous !",
+        "Chaque jour, l'espoir se renouvelle. Que ce Noël apporte lumière, force et guérison à tous !",
+        "Que vous ayez une structure solide pour soutenir tous vos rêves. Joyeux Noël !",
+        "Ce Noël, que vos connexions soient d'amour, vos synapses d'espoir et vos pensées de paix.",
+        "Que vous voyiez le monde avec les yeux du cœur ce Noël. Vision claire, vie pleine !",
+        "Prendre soin des vies est notre plus grand cadeau. Nous vous souhaitons beaucoup de santé pour toute votre famille ce Noël.",
+        "Que votre esprit trouve la paix, votre cœur du réconfort et votre âme du repos. Joyeux Noël !",
+        "Célébrer la vie est notre art. Que ce Noël soit rempli d'amour et de paix !",
+        "Tout ce qui guérit n'est pas toujours visible. Que Noël révèle le meilleur en chacun de nous !",
+        "Que votre peau reflète la santé intérieure et que votre éclat soit celui d'un vrai bonheur. Joyeux Noël !",
+        "Nous apportons soulagement, confort et sommeil paisible. Que votre Noël soit un repos bien mérité !",
+        "Joyeux Noël et une nouvelle année pleine de beaux moments !",
+        "Que tout votre corps soit en parfait équilibre, avec la joie de ce Noël !",
+        "Chaque pas est une victoire conquise. Que votre Noël soit rempli de pas vers le bonheur !",
+        "La vie coule dans nos veines. Que Noël circule amour, santé et renouveau dans tout votre être.",
+        "Que ce Noël renforce votre immunité et votre espoir !",
+        "Que votre Noël soit d'eaux cristallines et de santé renouvelée !",
+        "Respirez profondément : c'est Noël ! Que chaque inspiration apporte paix et chaque expiration libère les soucis.",
+        "Que vos articulations bougent avec légèreté et que votre esprit danse librement ce Noël !",
+        "Servir est notre vocation, guérir est notre mission, aimer est notre objectif. Joyeux Noël !",
+        "Prendre soin de la santé au travail est un acte de dignité. Que ce Noël vous apporte sécurité et plénitude !",
+        "Vous nous enseignez plus que vous ne l'imaginez. Merci pour votre confiance. Joyeux Noël !",
+        "Nous prenons soin de vous avec respect, traitons avec science et dédions nos efforts à votre santé. Merci de votre confiance. Joyeuses fêtes !",
+        "Chaque patient nous inspire à être meilleurs. Seuls nous sommes bons, ensemble nous sommes extraordinaires. Que ce Noël renforce notre unité et notre gratitude !",
+        "Dignité jusqu'au dernier souffle. Que Noël nous rappelle : chaque instant est précieux.",
+        "Là où la science rencontre l'art, naît la guérison. Que votre Noël soit un chef-d'œuvre de bonheur !",
+        "Que vous entendiez de bonnes nouvelles, respiriez facilement et chantiez de joie ce Noël !",
+        "Pendant que le monde célèbre, nous prenons soin. Notre cadeau ? Des vies sauvées. Joyeux Noël !",
+        "Plus qu'une blouse, c'est un symbole d'espoir. Que Noël renouvelle notre engagement envers nos patients !",
+        "L'amour pour nos patients ne s'arrête jamais. Que votre Noël apporte joie, sourires et moments positifs !",
+        "Chaque ligne écrite est une histoire de soin. Que votre Noël écrive des chapitres de santé complète !",
+        "Prescription de Noël : 1 dose d'amour, 2 d'espoir, 3 de santé. À prendre quotidiennement, chaque jour de la prochaine année !",
+        "Que votre Noël soit rempli de vies restaurées et d'amour !",
+        "Que votre température soit toujours de santé et votre cœur toujours chaud d'amour. Joyeux Noël !",
+        "Nous écoutons plus que des battements : nous écoutons des histoires et des espoirs. Nous vous souhaitons un Joyeux Noël !",
+        "Entre ces murs, nous construisons la confiance et soignons avec attention. Que votre Noël soit de chaleur et d'amour !",
+        "Nos mains ne font pas de miracles, mais elles sont des outils de Celui qui les réalise. Joyeux Noël !",
+        "Joyeux Noël !",
+        "Joyeux Noël et bonne année !"
+    ],
+    de: [
+        "Möge dein Herz 2026 stark schlagen, im perfekten Rhythmus von Gesundheit und Glück. Frohe Weihnachten!",
+        "Sich um Kinder zu kümmern bedeutet, jeden Tag an Wunder zu glauben. Möge Weihnachten diese Magie in uns erneuern!",
+        "Jeden Tag wird die Hoffnung erneuert. Möge dieses Weihnachten Licht, Kraft und Heilung für uns alle bringen.",
+        "Mögest du eine solide Struktur haben, um all deine Träume zu tragen. Frohe Weihnachten!",
+        "Dieses Weihnachten mögen deine Verbindungen aus Liebe, deine Synapsen aus Hoffnung und deine Gedanken aus Frieden bestehen.",
+        "Mögest du die Welt mit den Augen des Herzens sehen dieses Weihnachten. Klare Sicht, volles Leben!",
+        "Sich um Leben zu kümmern ist unser größtes Geschenk. Wir wünschen deiner ganzen Familie viel Gesundheit dieses Weihnachten.",
+        "Möge dein Geist Frieden finden, dein Herz Geborgenheit und deine Seele Ruhe. Frohe Weihnachten!",
+        "Das Leben zu feiern ist unser Handwerk. Möge dieses Weihnachten voller Liebe und Frieden sein!",
+        "Nicht alles, was heilt, ist für die Augen sichtbar. Möge Weihnachten das Beste in jedem von uns offenbaren!",
+        "Möge deine Haut innere Gesundheit widerspiegeln und dein Strahlen echte Freude sein. Frohe Weihnachten!",
+        "Wir bringen Erleichterung, Komfort und ruhigen Schlaf. Möge dein Weihnachten wohlverdiente Erholung bringen!",
+        "Frohe Weihnachten und ein neues Jahr voller großartiger Momente!",
+        "Möge dein ganzer Körper im perfekten Gleichgewicht sein, zusammen mit der Freude dieses Weihnachten!",
+        "Jeder Schritt ist ein errungener Sieg. Möge dein Weihnachten voller Schritte zum Glück sein!",
+        "Das Leben fließt durch unsere Adern. Möge Weihnachten Liebe, Gesundheit und Erneuerung durch deinen ganzen Körper zirkulieren lassen.",
+        "Möge dieses Weihnachten deine Immunität und deine Hoffnung stärken!",
+        "Möge dein Weihnachten aus kristallklarem Wasser und erneuerter Gesundheit bestehen!",
+        "Atme tief ein: es ist Weihnachten! Möge jeder Atemzug Frieden bringen und jeder Ausatmen Sorgen lösen.",
+        "Mögen deine Gelenke sich leicht bewegen und dein Geist frei tanzen dieses Weihnachten!",
+        "Dienen ist unsere Berufung, Heilen unsere Mission, Lieben unser Ziel. Frohe Weihnachten!",
+        "Sich um die Gesundheit am Arbeitsplatz zu kümmern ist ein Akt der Würde. Möge dieses Weihnachten dir Sicherheit und Erfüllung bringen!",
+        "Ihr lehrt uns mehr, als ihr euch vorstellen könnt. Danke für euer Vertrauen. Frohe Weihnachten!",
+        "Wir kümmern uns mit Respekt, behandeln mit Wissenschaft und widmen unsere Mühe eurer Gesundheit. Danke, dass ihr uns vertraut. Frohe Feiertage!",
+        "Jeder Patient inspiriert uns, besser zu werden. Allein sind wir gut, zusammen außergewöhnlich. Möge dieses Weihnachten unsere Einheit und Dankbarkeit stärken!",
+        "Würde bis zum letzten Atemzug. Möge Weihnachten uns daran erinnern: jeder Moment ist kostbar.",
+        "Wo Wissenschaft auf Kunst trifft, entsteht Heilung. Möge dein Weihnachten ein Meisterwerk des Glücks sein!",
+        "Mögest du gute Nachrichten hören, erleichtert atmen und vor Freude singen dieses Weihnachten!",
+        "Während die Welt feiert, kümmern wir uns. Unser Geschenk? Gerettete Leben. Frohe Weihnachten!",
+        "Mehr als ein Kittel ist es ein Symbol der Hoffnung. Möge Weihnachten unser Engagement gegenüber unseren Patienten erneuern!",
+        "Die Liebe zu unseren Patienten endet niemals. Möge dein Weihnachten Freude, Lächeln und positive Momente bringen!",
+        "Jede geschriebene Zeile ist eine Geschichte der Fürsorge. Möge dein Weihnachten Kapitel voller Gesundheit schreiben!",
+        "Weihnachtsrezept: 1 Dosis Liebe, 2 Dosen Hoffnung, 3 Dosen Gesundheit. Täglich einnehmen, jeden Tag des kommenden Jahres!",
+        "Möge dein Weihnachten voller wiederhergestellter Leben und Liebe sein!",
+        "Möge deine Temperatur immer gesund und dein Herz immer warm vor Liebe sein. Frohe Weihnachten!",
+        "Wir hören mehr als Herzschläge: wir hören Geschichten und Hoffnungen. Wir wünschen dir Frohe Weihnachten!",
+        "Innerhalb dieser Wände bauen wir Vertrauen auf und kümmern uns aufmerksam. Möge dein Weihnachten voller Herzlichkeit und Liebe sein!",
+        "Unsere Hände vollbringen keine Wunder, aber sie sind Werkzeuge dessen, der sie vollbringt. Frohe Weihnachten!",
+        "Frohe Weihnachten!",
+        "Frohe Weihnachten und ein gutes neues Jahr!"
+    ]
+};
+
+let currentImageObjectURL = null;
+let currentLanguage = 'en';
+
+const colorSwatches = [
+    '#000000', '#ffffff', '#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff',
+    '#ffa500', '#800080', '#4a90e2', '#7ed321', '#d0021b', '#50e3c2', '#888888', '#fbbf24'
+];
+
+// ============================================
+// DOM ELEMENTS
+// ============================================
+const el = {
+    bg: document.getElementById('backgroundInput'),
+    customFileBtn: document.getElementById('customFileBtn'),
+    fileName: document.getElementById('fileName'),
+    text: document.getElementById('textInput'),
+    font: document.getElementById('fontSelect'),
+    bold: document.getElementById('boldCheck'),
+    italic: document.getElementById('italicCheck'),
+    fontSize: document.getElementById('fontSizeSlider'),
+    fontSizeValue: document.getElementById('fontSizeValue'),
+    prevText: document.getElementById('previewText'),
+    prevImg: document.getElementById('previewImage'),
+    download: document.getElementById('downloadBtn'),
+    colorPal: document.getElementById('colorPalette'),
+    output: document.getElementById('filteredPhrasesOutput'),
+    area: document.getElementById('previewArea'),
+    imgMsg: document.getElementById('imageMessage'),
+    dlMsg: document.getElementById('downloadMessage')
+};
+
+// ============================================
+// CHRISTMAS PHRASES
+// ============================================
+
+function renderPhrases(lang) {
+    currentLanguage = lang;
+    const phrases = christmasPhrases[lang] || christmasPhrases.en;
+    el.output.innerHTML = '';
+    phrases.forEach(phrase => {
+        const item = document.createElement('div');
+        item.className = 'phrase-item';
+        item.textContent = phrase;
+        item.onclick = () => {
+            el.text.value = phrase;
+            updatePreview();
+            showMessage(el.imgMsg, '✨ Phrase added to your post!', 'success');
+            setTimeout(() => showMessage(el.imgMsg, '', ''), 2000);
+        };
+        el.output.appendChild(item);
+    });
+    
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.onclick = () => renderPhrases(btn.dataset.lang);
+});
+
+// ============================================
+// COLOR PALETTE
+// ============================================
+
+function createColorSwatches(container, targetElement, initialColor) {
+    container.innerHTML = '';
+    colorSwatches.forEach((color, index) => {
+        const swatch = document.createElement('div');
+        swatch.className = 'color-swatch';
+        swatch.style.backgroundColor = color;
+        swatch.onclick = () => {
+            container.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+            swatch.classList.add('active');
+            targetElement.style.color = color;
+        };
+        if (color === initialColor) {
+            swatch.classList.add('active');
+        }
+        container.appendChild(swatch);
+    });
+}
+
+// ============================================
+// DRAG FUNCTIONALITY
+// ============================================
+
+function makeDraggable(element) {
+    let isDragging = false;
+    let startX, startY, initialX, initialY;
+
+    element.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        element.classList.add('dragging');
+        
+        const rect = element.getBoundingClientRect();
+        const parentRect = el.area.getBoundingClientRect();
+        
+        startX = e.clientX;
+        startY = e.clientY;
+        initialX = rect.left - parentRect.left;
+        initialY = rect.top - parentRect.top;
+        
+        e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        
+        const newLeft = initialX + dx;
+        const newTop = initialY + dy;
+        
+        element.style.left = newLeft + 'px';
+        element.style.top = newTop + 'px';
+        element.style.transform = 'none';
+    });
+
+    document.addEventListener('mouseup', () => {
+        if (isDragging) {
+            isDragging = false;
+            element.classList.remove('dragging');
+        }
+    });
+
+    element.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        element.classList.add('dragging');
+        
+        const touch = e.touches[0];
+        const rect = element.getBoundingClientRect();
+        const parentRect = el.area.getBoundingClientRect();
+        
+        startX = touch.clientX;
+        startY = touch.clientY;
+        initialX = rect.left - parentRect.left;
+        initialY = rect.top - parentRect.top;
+        
+        e.preventDefault();
+    });
+
+    document.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        
+        const touch = e.touches[0];
+        const dx = touch.clientX - startX;
+        const dy = touch.clientY - startY;
+        
+        const newLeft = initialX + dx;
+        const newTop = initialY + dy;
+        
+        element.style.left = newLeft + 'px';
+        element.style.top = newTop + 'px';
+        element.style.transform = 'none';
+    });
+
+    document.addEventListener('touchend', () => {
+        if (isDragging) {
+            isDragging = false;
+            element.classList.remove('dragging');
+        }
+    });
+}
+
+makeDraggable(el.prevText);
+
+// ============================================
+// UTILITY FUNCTIONS
+// ============================================
+
+function showMessage(container, message, type = '') {
+    container.textContent = message;
+    container.className = message ? `message ${type}` : '';
+}
+
+// ============================================
+// FILE UPLOAD
+// ============================================
+
+el.customFileBtn.onclick = () => el.bg.click();
+el.bg.onchange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    if (!file.type.startsWith('image/')) {
+        showMessage(el.imgMsg, '⚠️ Please select a valid image file!', 'error');
+        return;
+    }
+    
+    if (file.size > 10 * 1024 * 1024) {
+        showMessage(el.imgMsg, '⚠️ Image too large! Max 10MB.', 'error');
+        return;
+    }
+    
+    if (currentImageObjectURL) {
+        URL.revokeObjectURL(currentImageObjectURL);
+    }
+
+    currentImageObjectURL = URL.createObjectURL(file);
+    el.prevImg.src = currentImageObjectURL;
+    el.fileName.textContent = file.name;
+    showMessage(el.imgMsg, 'Image loaded successfully!', 'success');
+};
+
+// ============================================
+// PREVIEW UPDATES
+// ============================================
+
+function updatePreview() {
+    el.prevText.innerText = el.text.value || '';
+    el.prevText.style.fontFamily = el.font.value;
+    el.prevText.style.fontWeight = el.bold.checked ? '700' : '400';
+    el.prevText.style.fontStyle = el.italic.checked ? 'italic' : 'normal';
+    
+    const requestedSize = parseInt(el.fontSize.value);
+    const maxWidth = el.area.offsetWidth * 0.9;
+    
+    el.prevText.style.fontSize = requestedSize + 'px';
+    
+    setTimeout(() => {
+        let finalSize = requestedSize;
+        
+        while (el.prevText.scrollWidth > maxWidth && finalSize > 16) {
+            finalSize -= 2;
+            el.prevText.style.fontSize = finalSize + 'px';
+        }
+        
+        if (finalSize < requestedSize) {
+            el.fontSizeValue.innerHTML = `${requestedSize}px <span style="font-size:0.75rem; color:#ff6b6b; font-style:italic; margin-left:5px;">(auto: ${finalSize}px)</span>`;
+            el.fontSizeValue.style.color = '#ff6b6b';
+        } else {
+            el.fontSizeValue.textContent = `${requestedSize}px`;
+            el.fontSizeValue.style.color = '#22c55e';
+        }
+    }, 50);
+}
+
+// ============================================
+// EVENT LISTENERS
+// ============================================
+
+el.text.oninput = updatePreview;
+el.font.onchange = updatePreview;
+el.bold.onchange = updatePreview;
+el.italic.onchange = updatePreview;
+el.fontSize.oninput = updatePreview;
+
+// ============================================
+// IMAGE GENERATION
+// ============================================
+
+async function generateImage() {
+    const canvas = await html2canvas(el.area, {
+        allowTaint: true,
+        useCORS: true,
+        backgroundColor: null,
+        scale: 2
+    });
+    
+    return canvas;
+}
+
+// ============================================
+// DOWNLOAD FUNCTIONALITY
+// ============================================
+
+el.download.onclick = async () => {
+    if (!el.prevImg.src) {
+        showMessage(el.dlMsg, 'Please add an image first!', 'error');
+        return;
+    }
+
+    el.download.disabled = true;
+    
+    try {
+        el.download.innerHTML = '<span class="spinner"></span>Generating...';
+        
+        const canvas = await generateImage();
+        const link = document.createElement('a');
+        link.download = 'Healthcare-Holiday-Cards-' + Date.now() + '.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        
+        showMessage(el.dlMsg, '✅ Download completed successfully!', 'success');
+    } catch (err) {
+        showMessage(el.dlMsg, '❌ Error generating image!', 'error');
+        console.error(err);
+    } finally {
+        el.download.disabled = false;
+        el.download.innerHTML = '🎁 Download Image';
+    }
+};
+
+// ============================================
+// INITIALIZATION
+// ============================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    createColorSwatches(el.colorPal, el.prevText, '#ffffff');
+    
+    renderPhrases('en');
+    
+    updatePreview();
+});
+
+window.addEventListener('beforeunload', () => {
+    if (currentImageObjectURL) {
+        URL.revokeObjectURL(currentImageObjectURL);
+    }
+});
+</script>
+
+</body>
+</html>
